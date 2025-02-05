@@ -1,3 +1,5 @@
+'use client'
+
 import { Transition } from "@headlessui/react";
 // // import { Link } from "@inertiajs/react";
 import Link from "next/link"; // Import Next.js Link

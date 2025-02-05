@@ -1,12 +1,15 @@
+'use client';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Fragment, useEffect } from "react";
 import Header from "@/Components/UI/Header";
 import Footer from "@/Components/UI/Footer";
+
 // import { usePage } from "@inertiajs/react";
 
-const HomeLayout = ({ children }) => {
-  const { url } = usePage();
 
+const HomeLayout = ({ children }) => {
+  // const { url } = usePage();
+    const url = "/";
   useEffect(() => {
     if (url === "/") {
       document.body.classList.add("home-page");
