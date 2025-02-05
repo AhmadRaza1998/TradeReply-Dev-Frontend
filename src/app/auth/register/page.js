@@ -11,8 +11,8 @@ import useForms from "@/Hooks/useForms";
 import LoginFooter from "@/Components/UI/LoginFooter";
 import { signupSchema } from "@/validations/schema";
 import NavLink from "@/Components/UI/NavLink";
-import { Formik, Field, Form, ErrorMessage } from "formik"; 
-import axios from 'axios';
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import axios from "axios";
 
 const initialValues = {
   email: "",
@@ -22,24 +22,20 @@ const initialValues = {
 export default function Register() {
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      console.log("Form Submitted with values:", values); // Debugging
-      // Call your API here with values.email and values.password
       await axios.get("http://127.0.0.1:8000/sanctum/csrf-cookie", {
-        withCredentials: true,
+        withCredentials: true
       });
-console.log("Values", values);
 
-    const response = await axios.post(
-      "http://127.0.0.1:8000/api/register",
-      values,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        withCredentials: true, // Ensure cookies (including CSRF token) are sent
-      }
-    );
-      console.log("API response:", response);      
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/register",
+        values,
+        {
+          headers: {
+            "Content-Type": "application/json"
+          },
+          withCredentials: true
+        }
+      );
       setSubmitting(false);
     } catch (error) {
       handleError(error);
@@ -74,7 +70,13 @@ console.log("Values", values);
                   validationSchema={signupSchema}
                   onSubmit={handleSubmit}
                 >
-                  {({ handleChange, values, errors, touched, isSubmitting }) => (
+                  {({
+                    handleChange,
+                    values,
+                    errors,
+                    touched,
+                    isSubmitting
+                  }) => (
                     <Form>
                       {/* Email Field */}
                       <Field name="email">
@@ -83,7 +85,11 @@ console.log("Values", values);
                             {...field} // Connects Formik state
                             placeholder="Email"
                             type="email"
-                            error={touched.email && errors.email ? <InputError message={errors.email} /> : null}
+                            error={
+                              touched.email && errors.email ? (
+                                <InputError message={errors.email} />
+                              ) : null
+                            }
                           />
                         )}
                       </Field>
@@ -95,7 +101,11 @@ console.log("Values", values);
                             {...field} // Connects Formik state
                             placeholder="Password"
                             type="password"
-                            error={touched.password && errors.password ? <InputError message={errors.password} /> : null}
+                            error={
+                              touched.password && errors.password ? (
+                                <InputError message={errors.password} />
+                              ) : null
+                            }
                           />
                         )}
                       </Field>
