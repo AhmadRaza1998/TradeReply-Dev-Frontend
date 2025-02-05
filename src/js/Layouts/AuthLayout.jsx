@@ -1,5 +1,5 @@
 import { Container } from "react-bootstrap";
-import "../css/auth/authGlobals.scss";
+import "../../css/auth/authGlobals.scss";
 
 export default function AuthLayout({ children }) {
   return (

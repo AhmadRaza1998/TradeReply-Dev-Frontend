@@ -1,19 +1,13 @@
-'use client';
-
-
 import InputError from "@/Components/UI/InputError";
 import TextInput from "@/Components/UI/TextInput";
 import AuthLayout from "@/Layouts/AuthLayout";
-import { Head } from "next/head";
+import { Head } from "@inertiajs/react";
 import CommonButton from "@/Components/UI/CommonButton";
 import { handleError } from "@/utils/helper";
 import { loginSchema } from "@/validations/schema";
 import { RightArrowIcon, Logo } from "@/Components/img/svgIcons/SvgIcon";
 import ThirdPartyLogin from "@/Components/common/ThirdPartyLogin";
-// import useForms from "@/Hooks/useForms";
-// import { useForm } from "@inertiajs/react";
-import { useForm } from 'react-hook-form';
-
+import useForms from "@/Hooks/useForms";
 import LoginFooter from "@/Components/UI/LoginFooter";
 import NavLink from "@/Components/UI/NavLink";
 import AlertMsg from "@/Components/UI/AlertMsg";
@@ -25,7 +19,7 @@ const initialValues = {
 
 export default function Login({ status }) {
   const { data, processing, errors, isValidForm, handleChange, post } =
-  useForm({
+    useForms({
       fields: initialValues,
       validationSchema: loginSchema,
     });
@@ -128,53 +122,3 @@ export default function Login({ status }) {
     </AuthLayout>
   );
 }
-
-
-// import React, { useState } from 'react';
-// import { useRouter } from 'next/navigation';
-// import { login } from '@/utils/auth';
-
-// // import { useAuth } from '@/context/AuthContext';
-
-// const Login = () => {
-//   const [email, setEmail] = useState('');
-//   const [password, setPassword] = useState('');
-// //   const { loginUser } = useAuth();
-//   const router = useRouter();
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     try {
-//       const data = await login({ email, password });
-//     //   loginUser(data.user); 
-//       router.push('/dashboard');  // Redirect to dashboard or home page
-//     } catch (error) {
-//       console.error('Login failed');
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <h2>Login</h2>
-//       <form onSubmit={handleSubmit}>
-//         <input
-//           type="email"
-//           placeholder="Email"
-//           value={email}
-//           onChange={(e) => setEmail(e.target.value)}
-//           required
-//         />
-//         <input
-//           type="password"
-//           placeholder="Password"
-//           value={password}
-//           onChange={(e) => setPassword(e.target.value)}
-//           required
-//         />
-//         <button type="submit">Login</button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default Login;
