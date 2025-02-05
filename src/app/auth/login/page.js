@@ -1,4 +1,5 @@
 'use client';
+
 import TextInput from "@/Components/UI/TextInput";
 import AuthLayout from "@/Layouts/AuthLayout";
 import Link from "next/link";
@@ -8,9 +9,9 @@ import { handleError } from "@/utils/helper";
 import { loginSchema } from "@/validations/schema";
 import { RightArrowIcon, Logo } from "@/Components/img/svgIcons/SvgIcon";
 import ThirdPartyLogin from "@/Components/common/ThirdPartyLogin";
-// import useForms from "@/Hooks/useForms";
+import useForms from "@/Hooks/useForms";
 // import { useForm } from "@inertiajs/react";
-import { useForm } from 'react-hook-form';
+// import { useForm } from 'react-hook-form';
 
 import LoginFooter from "@/Components/UI/LoginFooter";
 import NavLink from "@/Components/UI/NavLink";
@@ -23,17 +24,18 @@ const initialValues = {
 
 export default function Login({ status }) {
   const { data, processing, errors, isValidForm, handleChange, post } =
-  useForm({
+  useForms({
       fields: initialValues,
       validationSchema: loginSchema,
     });
   const submit = async (e) => {
+    console.log('hello world');
     e.preventDefault();
     try {
       const isValid = await isValidForm();
 
       if (!isValid) return;
-      post(route("login"), {
+      post("login", {
         onFinish: () => reset("password"),
       });
     } catch (error) {
