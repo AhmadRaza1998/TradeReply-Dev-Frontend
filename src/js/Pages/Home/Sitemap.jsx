@@ -1,6 +1,7 @@
 import { Col, Container, Row } from "react-bootstrap";
 import CommonHeading from "@/Components/UI/CommonHeading";
-import { Link } from "@inertiajs/react";
+// import { Link } from "@inertiajs/react";
+import Link from "next/link"; 
 import "../../../css/Home/Sitemap.scss";
 import HomeLayout from "@/Layouts/HomeLayout";
 

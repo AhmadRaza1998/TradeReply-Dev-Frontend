@@ -1,4 +1,5 @@
-import { Link } from "@inertiajs/react";
+// import { Link } from "@inertiajs/react";
+import Link from "next/link"; 
 import { map, noop, get, isEmpty } from "lodash";
 import { placeHolderImg } from "@/constants";
 import Tag from "./Tag";

@@ -1,7 +1,10 @@
 import { Logo, RightArrowIcon } from "@/Components/img/svgIcons/SvgIcon";
 import LoginFooter from "@/Components/UI/LoginFooter";
 import AuthLayout from "@/Layouts/AuthLayout";
-import { Head, Link } from "@inertiajs/react";
+// import { Head, Link } from "@inertiajs/react";
+// import { Link } from "@inertiajs/react";
+import Link from "next/link"; 
+import Head from "next/head"; 
 import InputError from "@/Components/UI/InputError";
 import TextInput from "@/Components/UI/TextInput";
 import { forgetSchema } from "@/validations/schema";

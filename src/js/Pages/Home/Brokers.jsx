@@ -1,5 +1,6 @@
 import { Container } from "react-bootstrap";
-import { Link } from "@inertiajs/react";
+// import { Link } from "@inertiajs/react";
+import Link from "next/link"; 
 import {
   SolidInfoIcon,
   RightSolidArrowIcon,

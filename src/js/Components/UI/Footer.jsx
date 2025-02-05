@@ -1,5 +1,6 @@
 import { Col, Container, Row } from "react-bootstrap";
-import { Link } from "@inertiajs/react";
+// import { Link } from "@inertiajs/react";
+import Link from "next/link"; 
 import { Logo } from "../img/svgIcons/SvgIcon";
 import "../../../css/common/Footer.scss";
 

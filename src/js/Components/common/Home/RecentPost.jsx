@@ -1,6 +1,7 @@
 import { blogLimit, placeHolderImg } from "@/constants";
 import "../../../../css/Home/Blog.scss";
-import { Link } from "@inertiajs/react";
+// import { Link } from "@inertiajs/react";
+import Link from "next/link"; 
 import { truncateContent } from "@/utils/helper";
 
 const RecentPost = ({ img, title, text, coinname, className, time, href }) => {

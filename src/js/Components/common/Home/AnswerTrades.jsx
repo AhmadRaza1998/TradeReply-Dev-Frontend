@@ -7,8 +7,7 @@ import {
   RoketIcon,
 } from "@/Components/img/svgIcons/SvgIcon";
 import "../../../../css/Home/AnswerTrades.scss";
-import { Link } from "@inertiajs/react";
-
+import Link from "next/link"; 
 const AnswerTrades = () => {
   const tradedata = [
     {

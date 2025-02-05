@@ -1,6 +1,7 @@
 import { Col, Container, Row } from "react-bootstrap";
 import CommonButton from "@/Components/UI/CommonButton";
-import { Link } from "@inertiajs/react";
+// import { Link } from "@inertiajs/react";
+import Link from "next/link"; 
 import { CheckIcon, RedCrossIcon } from "@/Components/img/svgIcons/SvgIcon";
 import useNavigate from "@/Hooks/useNavigate";
 import Switch from "@/Components/UI/Switch";

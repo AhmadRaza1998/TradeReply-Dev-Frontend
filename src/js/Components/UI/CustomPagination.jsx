@@ -1,5 +1,6 @@
 import { Pagination } from "react-bootstrap";
-import { Link } from "@inertiajs/react";
+// import { Link } from "@inertiajs/react";
+import Link from "next/link"; 
 import { isEmpty, map } from "lodash";
 import "../../../css/common/CustomPagination.scss";
 

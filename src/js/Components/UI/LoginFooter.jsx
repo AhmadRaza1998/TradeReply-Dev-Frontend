@@ -1,4 +1,5 @@
-import { Link } from "@inertiajs/react";
+// import { Link } from "@inertiajs/react";
+import Link from "next/link"; 
 
 const LoginFooter = () => {
   return (

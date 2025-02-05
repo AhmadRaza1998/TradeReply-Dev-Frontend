@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import ApplicationLogo from "@/Components/UI/ApplicationLogo";
 import Dropdown from "@/Components/UI/Dropdown";
 import NavLink from "@/Components/UI/NavLink";

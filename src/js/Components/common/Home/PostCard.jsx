@@ -1,4 +1,4 @@
-import { Link } from "@inertiajs/react";
+import Link from "next/link"; 
 
 const PostCard = ({ img, title, text, className, redirectHref }) => {
   return (

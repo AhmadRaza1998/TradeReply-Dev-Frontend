@@ -1,10 +1,9 @@
 'use client';
-
-
-import InputError from "@/Components/UI/InputError";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import TextInput from "@/Components/UI/TextInput";
 import AuthLayout from "@/Layouts/AuthLayout";
-import { Head } from "next/head";
+import Link from "next/link";
+import Head from "next/head";
 import CommonButton from "@/Components/UI/CommonButton";
 import { handleError } from "@/utils/helper";
 import { loginSchema } from "@/validations/schema";
@@ -29,7 +28,6 @@ export default function Login({ status }) {
       fields: initialValues,
       validationSchema: loginSchema,
     });
-
   const submit = async (e) => {
     e.preventDefault();
     try {
@@ -79,8 +77,8 @@ export default function Login({ status }) {
                     name="email"
                     type="email"
                     onChange={(e) => handleChange("email", e.target.value)}
-                    value={data.email}
-                    error={<InputError message={errors.email} />}
+                    // // value={data.email}
+                    // error={<InputError message={errors.email} />}
                   />
 
                   <TextInput
@@ -90,14 +88,14 @@ export default function Login({ status }) {
                     type="password"
                     onChange={(e) => handleChange("password", e.target.value)}
                     autoFocus={true}
-                    value={data.password}
-                    error={<InputError message={errors.password} />}
+                    // value={data.password}
+                    // error={<InputError message={errors.password} />}
                   />
 
                   <div className="Forgotpassoword text-center pt-2 mb-4 pb-2">
-                    <NavLink href={route("password.request")}>
+                    <Link href="/auth/forgotPassword">
                       Forgot password or can&apos;t log in
-                    </NavLink>
+                    </Link>
                   </div>
 
                   <div className="w-100">
@@ -110,9 +108,9 @@ export default function Login({ status }) {
                   </div>
                   <div className="anAccount mt-3 text-center">
                     <h6>
-                      <NavLink href={route("register")}>
+                      <Link href="/auth/register">
                         Create a free TradeReply Account
-                      </NavLink>
+                      </Link>                    
                     </h6>
                   </div>
                 </form>

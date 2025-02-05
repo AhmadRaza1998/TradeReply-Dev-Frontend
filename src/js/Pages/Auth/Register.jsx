@@ -1,7 +1,8 @@
 import InputError from "@/Components/UI/InputError";
 import TextInput from "@/Components/UI/TextInput";
 import AuthLayout from "@/Layouts/AuthLayout";
-import { Link } from "@inertiajs/react";
+// import { Link } from "@inertiajs/react";
+import Link from "next/link"; 
 import CommonButton from "@/Components/UI/CommonButton";
 import { handleError } from "@/utils/helper";
 import { RightArrowIcon, Logo } from "@/Components/img/svgIcons/SvgIcon";

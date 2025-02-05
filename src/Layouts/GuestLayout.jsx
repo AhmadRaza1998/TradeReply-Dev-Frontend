@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import ApplicationLogo from "@/Components/UI/ApplicationLogo";
 // // import { Link } from "@inertiajs/react";
 import Link from "next/link"; // Import Next.js Link

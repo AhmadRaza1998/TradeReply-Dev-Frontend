@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Fragment, useState } from "react";
 import Header from "@/Components/UI/Header";
 import Footer from "@/Components/UI/Footer";

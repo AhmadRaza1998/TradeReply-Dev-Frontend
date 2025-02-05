@@ -1,4 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 import DashboardLayout from "@/Layouts/DashboardLayout";
 import { Col, Container, Row } from "react-bootstrap";
 import AdminHeading from "@/Components/common/Dashboard/AdminHeading";
