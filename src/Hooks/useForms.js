@@ -1,51 +1,43 @@
-import { useForm } from 'react-hook-form';
-import * as Yup from 'yup';
-import { isEmpty } from 'lodash';
-import { handleError } from "@/utils/helper"; // Custom error handler
+import { useForm } from "react-hook-form";
+import { isEmpty } from "lodash";
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { handleError } from "@/utils/helper";
 
 export default function useForms({ fields = {}, validationSchema }) {
   const {
-    register,
-    handleSubmit,
+    register, 
     setValue,
+    getValues,
     setError,
-    formState: { errors },
-    reset,
-    watch,
+    clearErrors,
+    formState,
+    // formState: { errors, isSubmitting },
   } = useForm({
     defaultValues: fields,
+    resolver: validationSchema ? yupResolver(validationSchema) : undefined, // Yup validation
   });
-
-  // Function to handle individual field changes and trigger validation
+  const { errors, isSubmitting } = formState;
   const handleChange = (field, value) => {
-    setValue(field, value); // Set value in form
-    if (!isEmpty(validationSchema)) {
-      handleFieldValidation(field, value); // Trigger field validation
-    }
+    setValue(field, value); // Update form field
+    !isEmpty(validationSchema) && handleFieldValidation(field, value); // Validate field
   };
 
-  // Function to validate a single field using Yup
   const handleFieldValidation = async (field, value) => {
-    const errorsClone = { ...errors };
     try {
-      // Validate single field using validationSchema
-      await validationSchema?.validateAt(field, {
-        ...fields,  // Using current form field values
-        [field]: value,
-      });
-      setError(field, { type: "manual", message: "" }); // Clear error if validation passes
+      await validationSchema?.validateAt(field, { ...getValues(), [field]: value });
+      clearErrors(field); // Clear error if validation passes
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
-        setError(field, { type: "manual", message: error.message }); // Set field error if validation fails
+        setError(field, { type: "manual", message: error.message }); // Set validation error
       }
     }
   };
 
-  // Function to validate the whole form
   const isValidForm = async () => {
     try {
       if (isEmpty(validationSchema)) return true;
-      await validationSchema.validate(fields, { abortEarly: false });
+      await validationSchema.validate(getValues(), { abortEarly: false });
       return true;
     } catch (error) {
       handleError(error, setError);
@@ -54,14 +46,64 @@ export default function useForms({ fields = {}, validationSchema }) {
   };
 
   return {
-    register,        // To register fields with the form
-    handleSubmit,     // To handle form submission
-    setValue,         // To manually set a field value
-    setError,         // To manually set a field error
-    reset,            // To reset form fields
-    watch,            // To watch form field values
-    errors,           // Access form validation errors
-    handleChange,     // Custom change handler with validation
-    isValidForm,      // Validate the entire form
+    register, // Use this in form fields 
+    setValue,
+    getValues,
+    setError,
+    errors,
+    isSubmitting,
+    handleChange,
+    isValidForm,
   };
 }
+
+
+
+// import { handleError } from "@/utils/helper";
+// // import { useForm } from "@inertiajs/react";
+// import { useForm } from 'react-hook-form';
+
+// import { isEmpty } from "lodash";
+// import * as Yup from "yup";
+
+// export default function useForms({ fields = {}, validationSchema }) {
+//   const props = useForm(fields);
+//   console.log(props);
+  
+//   const handleChange = (field, value) => {
+//     props.setData(field, value); // Update form state
+//     !isEmpty(validationSchema) && handleFieldValidation(field, value); // Validate the field
+//   };
+
+//   const handleFieldValidation = async (field, value) => {
+//     const errorsClone = structuredClone(props.errors);
+//     try {
+//       await validationSchema?.validateAt(field, {
+//         ...props.data,
+//         [field]: value,
+//       });
+//       props.setError({ ...errorsClone, [field]: undefined }); // Clear error for this field
+//     } catch (error) {
+//       if (error instanceof Yup.ValidationError) {
+//         props.setError({ ...errorsClone, [field]: error.message }); // Set error for this field
+//       }
+//     }
+//   };
+
+//   const isValidForm = async () => {
+//     try {
+//       if (isEmpty(validationSchema)) return true;
+//       await validationSchema.validate(props.data, { abortEarly: false });
+//       return true;
+//     } catch (error) {
+//       handleError(error, props.setError);
+//       return false;
+//     }
+//   };
+
+//   return {
+//     ...props,
+//     handleChange,
+//     isValidForm,
+//   };
+// }

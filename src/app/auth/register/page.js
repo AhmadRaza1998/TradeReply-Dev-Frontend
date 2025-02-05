@@ -1,8 +1,8 @@
-'use client';
+"use client";
+import Link from "next/link";
 import InputError from "@/Components/UI/InputError";
 import TextInput from "@/Components/UI/TextInput";
 import AuthLayout from "@/Layouts/AuthLayout";
-import Link from "next/link";
 import CommonButton from "@/Components/UI/CommonButton";
 import { handleError } from "@/utils/helper";
 import { RightArrowIcon, Logo } from "@/Components/img/svgIcons/SvgIcon";
@@ -11,27 +11,35 @@ import useForms from "@/Hooks/useForms";
 import LoginFooter from "@/Components/UI/LoginFooter";
 import { signupSchema } from "@/validations/schema";
 import NavLink from "@/Components/UI/NavLink";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import axios from "axios";
 
 const initialValues = {
   email: "",
-  password: "",
+  password: ""
 };
 
 export default function Register() {
-  const { data, post, processing, errors, handleChange, isValidForm } =
-    useForms({
-      fields: initialValues,
-      validationSchema: signupSchema,
-    });
-
-  const submit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      const isValid = await isValidForm();
-      if (!isValid) return false;
-      post(route("register"));
+      await axios.get("http://127.0.0.1:8000/sanctum/csrf-cookie", {
+        withCredentials: true
+      });
+
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/register",
+        values,
+        {
+          headers: {
+            "Content-Type": "application/json"
+          },
+          withCredentials: true
+        }
+      );
+      setSubmitting(false);
     } catch (error) {
       handleError(error);
+      setSubmitting(false);
     }
   };
 
@@ -57,41 +65,68 @@ export default function Register() {
             </div>
             <div className="loginTabs">
               <div className="loginForm">
-                <form onSubmit={submit}>
-                  <TextInput
-                    placeholder="Email"
-                    id="email"
-                    name="email"
-                    type="email"
-                    onChange={(e) => handleChange("email", e.target.value)}
-                    // value={data.email}
-                    // error={<InputError message={errors.email} />}
-                  />
+                <Formik
+                  initialValues={initialValues}
+                  validationSchema={signupSchema}
+                  onSubmit={handleSubmit}
+                >
+                  {({
+                    handleChange,
+                    values,
+                    errors,
+                    touched,
+                    isSubmitting
+                  }) => (
+                    <Form>
+                      {/* Email Field */}
+                      <Field name="email">
+                        {({ field }) => (
+                          <TextInput
+                            {...field} // Connects Formik state
+                            placeholder="Email"
+                            type="email"
+                            error={
+                              touched.email && errors.email ? (
+                                <InputError message={errors.email} />
+                              ) : null
+                            }
+                          />
+                        )}
+                      </Field>
 
-                  <TextInput
-                    placeholder="Password"
-                    id="password"
-                    type="password"
-                    onChange={(e) => handleChange("password", e.target.value)}
-                    // value={data.password}
-                    // error={<InputError message={errors.password} />}
-                  />
+                      {/* Password Field */}
+                      <Field name="password">
+                        {({ field }) => (
+                          <TextInput
+                            {...field} // Connects Formik state
+                            placeholder="Password"
+                            type="password"
+                            error={
+                              touched.password && errors.password ? (
+                                <InputError message={errors.password} />
+                              ) : null
+                            }
+                          />
+                        )}
+                      </Field>
 
-                  <div className="w-100">
-                    <CommonButton
-                      type="submit"
-                      title="Create Account"
-                      fluid
-                      disabled={processing}
-                    />
-                  </div>
-                  <div className="anAccount mt-3 text-center">
-                    <h6>
-                      Already have an account?{" "}
-                      <NavLink href="/auth/login">Login</NavLink>
-                    </h6>
-                  </div>
-                </form>
+                      <div className="w-100">
+                        <CommonButton
+                          type="submit"
+                          title="Create Account"
+                          fluid
+                          disabled={isSubmitting}
+                        />
+                      </div>
+                      <div className="anAccount mt-3 text-center">
+                        <h6>
+                          Already have an account?{" "}
+                          <NavLink href="/auth/login">Login</NavLink>
+                        </h6>
+                      </div>
+                    </Form>
+                  )}
+                </Formik>
               </div>
             </div>
           </div>
