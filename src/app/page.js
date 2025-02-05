@@ -9,6 +9,7 @@ import {
   TradeIcon,
 } from "@/Components/img/svgIcons/SvgIcon";
 import "../css/dashboard/Dashboard.scss";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const overviewbox = [
   {

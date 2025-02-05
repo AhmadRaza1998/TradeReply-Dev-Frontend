@@ -1,5 +1,4 @@
 'use client';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import TextInput from "@/Components/UI/TextInput";
 import AuthLayout from "@/Layouts/AuthLayout";
 import Link from "next/link";
