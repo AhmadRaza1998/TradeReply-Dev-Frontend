@@ -11,7 +11,6 @@ import useForms from "@/Hooks/useForms";
 import LoginFooter from "@/Components/UI/LoginFooter";
 import { signupSchema } from "@/validations/schema";
 import NavLink from "@/Components/UI/NavLink";
-import { useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 
 const initialValues = {
@@ -20,31 +19,14 @@ const initialValues = {
 };
 
 export default function Register() {
-  // const { data, setData, post, processing, errors, handleChange, isValidForm } =
-  //   useForms({
-  //     fields: initialValues,
-  //     validationSchema: signupSchema,
-  //   });
-
-  const {
-    register, 
-    errors,
-    handleChange,
-    isValidForm,
-    isSubmitting
-  } = useForms({
-    fields: initialValues,
-    validationSchema: signupSchema
-  });
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      const isValid = await isValidForm();
-      if (!isValid) return false;
-      post(route("register"));
+      console.log("Form Submitted with values:", values); // Debugging
+      // Call your API here with values.email and values.password
+      setSubmitting(false);
     } catch (error) {
       handleError(error);
+      setSubmitting(false);
     }
   };
 
@@ -75,41 +57,48 @@ export default function Register() {
                   validationSchema={signupSchema}
                   onSubmit={handleSubmit}
                 >
-                  <Form>
-                    <TextInput
-                      placeholder="Email"
-                      id="email"
-                      name="email"
-                      type="email"
-                      // onChange={(e) => handleChange("email", e.target.value)}
-                      // value={data.email}
-                      // error={<InputError message={errors.email} />}
-                    />
+                  {({ handleChange, values, errors, touched, isSubmitting }) => (
+                    <Form>
+                      {/* Email Field */}
+                      <Field name="email">
+                        {({ field }) => (
+                          <TextInput
+                            {...field} // Connects Formik state
+                            placeholder="Email"
+                            type="email"
+                            error={touched.email && errors.email ? <InputError message={errors.email} /> : null}
+                          />
+                        )}
+                      </Field>
 
-                    <TextInput
-                      placeholder="Password"
-                      id="password"
-                      type="password"
-                      // onChange={(e) => handleChange("password", e.target.value)}
-                      // value={data.password}
-                      // error={<InputError message={errors.password} />}
-                    />
+                      {/* Password Field */}
+                      <Field name="password">
+                        {({ field }) => (
+                          <TextInput
+                            {...field} // Connects Formik state
+                            placeholder="Password"
+                            type="password"
+                            error={touched.password && errors.password ? <InputError message={errors.password} /> : null}
+                          />
+                        )}
+                      </Field>
 
-                    <div className="w-100">
-                      <CommonButton
-                        type="submit"
-                        title="Create Account"
-                        fluid
-                        disabled={isSubmitting}
-                      />
-                    </div>
-                    <div className="anAccount mt-3 text-center">
-                      <h6>
-                        Already have an account?{" "}
-                        <NavLink href="/auth/login">Login</NavLink>
-                      </h6>
-                    </div>
-                  </Form>
+                      <div className="w-100">
+                        <CommonButton
+                          type="submit"
+                          title="Create Account"
+                          fluid
+                          disabled={isSubmitting}
+                        />
+                      </div>
+                      <div className="anAccount mt-3 text-center">
+                        <h6>
+                          Already have an account?{" "}
+                          <NavLink href="/auth/login">Login</NavLink>
+                        </h6>
+                      </div>
+                    </Form>
+                  )}
                 </Formik>
               </div>
             </div>
