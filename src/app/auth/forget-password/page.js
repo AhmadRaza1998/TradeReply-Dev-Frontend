@@ -1,10 +1,9 @@
+'use client';
 import { Logo, RightArrowIcon } from "@/Components/img/svgIcons/SvgIcon";
 import LoginFooter from "@/Components/UI/LoginFooter";
 import AuthLayout from "@/Layouts/AuthLayout";
-// import { Head, Link } from "@inertiajs/react";
-// import { Link } from "@inertiajs/react";
-import Link from "next/link"; 
-import Head from "next/head"; 
+import Link  from "next/link";
+import Head  from "next/head";
 import InputError from "@/Components/UI/InputError";
 import TextInput from "@/Components/UI/TextInput";
 import { forgetSchema } from "@/validations/schema";
@@ -37,7 +36,9 @@ export default function ForgotPassword({ status }) {
 
   return (
     <AuthLayout>
-      <Head title="Forgot Password" />
+      <Head>
+        <title>Forgot Password</title>
+      </Head>
       <div className="loginCommon_rightSide">
         <div className="loginCommon_rightSide_inner">
           <div className="backbtn">
@@ -67,8 +68,8 @@ export default function ForgotPassword({ status }) {
                     name="email"
                     type="email"
                     onChange={(e) => handleChange("email", e.target.value)}
-                    value={data.email}
-                    error={<InputError message={errors.email} />}
+                    // value={data.email}
+                    // error={<InputError message={errors.email} />}
                   />
 
                   <div className="w-100 pt-3">
