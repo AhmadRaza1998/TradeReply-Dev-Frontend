@@ -10,6 +10,7 @@ import {
 } from "@/Components/img/svgIcons/SvgIcon";
 import "../css/dashboard/Dashboard.scss";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "./globals.css";
 
 const overviewbox = [
   {

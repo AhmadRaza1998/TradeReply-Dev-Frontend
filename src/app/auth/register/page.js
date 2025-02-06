@@ -13,32 +13,20 @@ import { signupSchema } from "@/validations/schema";
 import NavLink from "@/Components/UI/NavLink";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import axios from "axios";
-
+import { register } from "@/utils/auth";
 const initialValues = {
   email: "",
-  password: ""
+  password: "",
+  password_confirmation: ""
 };
 
 export default function Register() {
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      await axios.get("http://127.0.0.1:8000/sanctum/csrf-cookie", {
-        withCredentials: true
-      });
-
-      const response = await axios.post(
-        "http://127.0.0.1:8000/api/register",
-        values,
-        {
-          headers: {
-            "Content-Type": "application/json"
-          },
-          withCredentials: true
-        }
-      );
+      const response = await register(values);
       setSubmitting(false);
+      handleError(response.errors);
     } catch (error) {
-      handleError(error);
       setSubmitting(false);
     }
   };
@@ -104,6 +92,21 @@ export default function Register() {
                             error={
                               touched.password && errors.password ? (
                                 <InputError message={errors.password} />
+                              ) : null
+                            }
+                          />
+                        )}
+                      </Field>
+
+                      <Field name="password_confirmation">
+                        {({ field }) => (
+                          <TextInput
+                            {...field} // Connects Formik state
+                            placeholder="Confirm Password"
+                            type="password"
+                            error={
+                              touched.password_confirmation && errors.password_confirmation ? (
+                                <InputError message={errors.password_confirmation} />
                               ) : null
                             }
                           />

@@ -49,7 +49,7 @@ const sitemapbox = [
     content: [
       {
         text: "Log In / Sign Up",
-        to: "/login",
+        to: "/auth/login",
       },
       {
         text: "Help Center",

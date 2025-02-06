@@ -2,10 +2,23 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 const apiUrl = 'http://127.0.0.1:8000/api'; 
+const Url = 'http://127.0.0.1:8000'; 
 
 export const register = async (userData) => {
   try {
-    const response = await axios.post(`${apiUrl}/register`, userData);
+    await axios.get(`${Url}/sanctum/csrf-cookie`, {
+      withCredentials: true
+    });
+
+    const response = await axios.post(`${apiUrl}/register`, 
+      userData,
+      {
+        headers: {
+          "Content-Type": "application/json"
+        },
+        withCredentials: true
+      }
+    );
     return response.data;
   } catch (error) {
     console.error('Registration error:', error);

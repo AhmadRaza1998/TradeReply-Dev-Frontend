@@ -35,7 +35,7 @@ axiosInstance.interceptors.response.use(
         console.log('Unauthorized access. Redirecting to login...');
         
         const router = useRouter();
-        router.push('/login'); 
+        router.push('/auth/login'); 
 
         
         localStorage.removeItem('auth_token');
