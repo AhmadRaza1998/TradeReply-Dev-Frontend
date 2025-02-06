@@ -14,6 +14,7 @@ import NavLink from "@/Components/UI/NavLink";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import axios from "axios";
 import { register } from "@/utils/auth";
+import toast from "react-hot-toast";
 const initialValues = {
   email: "",
   password: "",
@@ -21,11 +22,21 @@ const initialValues = {
 };
 
 export default function Register() {
-  const handleSubmit = async (values, { setSubmitting }) => {
+  const handleSubmit = async (values, { setSubmitting, setErrors }) => {
     try {
       const response = await register(values);
+      console.log("Create User",response);
+      
       setSubmitting(false);
-      handleError(response.errors);
+      // handleError(response.errors);
+      if(response?.errors){
+        setErrors(response?.errors);
+      }
+
+      if(response?.status){
+        toast.success(response?.message);
+        window.location.href = "/auth/login";
+      }
     } catch (error) {
       setSubmitting(false);
     }
@@ -68,14 +79,14 @@ export default function Register() {
                     <Form>
                       {/* Email Field */}
                       <Field name="email">
-                        {({ field }) => (
+                        {({ field, meta }) => (
                           <TextInput
                             {...field} // Connects Formik state
                             placeholder="Email"
                             type="email"
                             error={
-                              touched.email && errors.email ? (
-                                <InputError message={errors.email} />
+                              meta.touched && meta.error ? (
+                                <InputError message={meta.error} />
                               ) : null
                             }
                           />
@@ -84,14 +95,14 @@ export default function Register() {
 
                       {/* Password Field */}
                       <Field name="password">
-                        {({ field }) => (
+                        {({ field, meta }) => (
                           <TextInput
                             {...field} // Connects Formik state
                             placeholder="Password"
                             type="password"
                             error={
-                              touched.password && errors.password ? (
-                                <InputError message={errors.password} />
+                              meta.touched && meta.error ? (
+                                <InputError message={meta.error} />
                               ) : null
                             }
                           />
@@ -99,14 +110,14 @@ export default function Register() {
                       </Field>
 
                       <Field name="password_confirmation">
-                        {({ field }) => (
+                        {({ field, meta }) => (
                           <TextInput
                             {...field} // Connects Formik state
                             placeholder="Confirm Password"
                             type="password"
                             error={
-                              touched.password_confirmation && errors.password_confirmation ? (
-                                <InputError message={errors.password_confirmation} />
+                              meta.touched && meta.error ? (
+                                <InputError message={meta.error} />
                               ) : null
                             }
                           />

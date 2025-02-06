@@ -1,5 +1,6 @@
 import axios from 'axios';
-import Cookies from 'js-cookie';
+import Cookies from 'js-cookie'; 
+import toast from "react-hot-toast";
 
 const apiUrl = 'http://127.0.0.1:8000/api'; 
 const Url = 'http://127.0.0.1:8000'; 
@@ -21,8 +22,11 @@ export const register = async (userData) => {
       }
     );
     return response.data;
-  } catch (error) {
-    console.error('Registration error:', error);
+  } catch (error) { 
+    if(error.response && error.response?.status == 422){
+      return {errors: error.response.data.errors};
+    } 
+    return { errors: {} };
   }
 };
 
@@ -44,14 +48,11 @@ export const login = async (credentials) => {
     );
     return response.data;
   } catch (error) {
-    console.error('Registration error:', error);
-    throw error;
-  
-
-    // const { token } = response.data;
-  
-    // Cookies.set('auth_token', token, { expires: 7, secure: true });
-
+    console.error('Login error:', error);
+    if(error.response && error.response?.status == 422){
+      return {errors: error.response.data.errors};
+    }
+    return { errors: {} };
   }
 };
 
