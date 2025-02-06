@@ -1,38 +1,44 @@
-import { login } from '@/utils/auth';
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { login } from "@/utils/auth";
+import Cookies from "js-cookie";
 
 export const loginUser = createAsyncThunk(
-  'auth/login',
+  "auth/login",
   async ({ email, password }, { rejectWithValue }) => {
     try {
-        const credentials = JSON.stringify({ email, password });
-
-        const response = await login(credentials);
-
-      if (!response.ok) {
-        throw new Error('Invalid credentials');
+      const credentials = { email, password };
+      const response = await login(credentials);
+      console.log("Login User",response?.auth_token);
+      
+      if (response.errors) {
+        return rejectWithValue(response.errors); // Return validation errors
       }
-      return await response.json(); // Return user data
+
+      Cookies.set("authToken", response.auth_token, { expires: 1 }); 
+
+      return response; // Return user data
     } catch (error) {
       return rejectWithValue(error.message);
     }
   }
 );
 
-// Auth slice
 const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState: {
     user: null,
+    token: null,
     loading: false,
     error: null,
   },
   reducers: {
     logoutUser: (state) => {
       state.user = null;
+      state.token = null;
+      Cookies.remove("authToken");
     },
     setUser: (state, action) => {
-      state.user = action.payload; // Set the user data
+      state.user = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -43,7 +49,8 @@ const authSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload;
+        state.user = action.payload.user;
+        state.token = action.payload.token; 
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
@@ -52,8 +59,6 @@ const authSlice = createSlice({
   },
 });
 
-// Selector to get the user from the state
-export const getUser = (state) => state.auth.user;
-
 export const { logoutUser, setUser } = authSlice.actions;
+export const getUser = (state) => state.auth.user;
 export default authSlice.reducer;

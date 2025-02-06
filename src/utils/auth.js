@@ -1,6 +1,5 @@
 import axios from 'axios';
-import Cookies from 'js-cookie'; 
-import toast from "react-hot-toast";
+import Cookies from 'js-cookie';  
 
 const apiUrl = 'http://127.0.0.1:8000/api'; 
 const Url = 'http://127.0.0.1:8000'; 
