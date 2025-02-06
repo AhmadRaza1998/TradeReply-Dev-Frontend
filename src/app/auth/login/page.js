@@ -4,7 +4,6 @@ import TextInput from "@/Components/UI/TextInput";
 import AuthLayout from "@/Layouts/AuthLayout";
 import InputError from "@/Components/UI/InputError";
 import Link from "next/link";
-import Head from "next/head";
 import CommonButton from "@/Components/UI/CommonButton";
 import { handleError } from "@/utils/helper";
 import { loginSchema } from "@/validations/schema";
@@ -19,6 +18,8 @@ import { values } from "lodash";
 import { login } from "@/utils/auth";
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../../redux/authSlice';
+import { useRouter } from 'next/navigation'
+
 
 const initialValues = {
   email: "",
@@ -28,22 +29,28 @@ const initialValues = {
 export default function Login({ status }) {
 
   const dispatch = useDispatch();
+  const router = useRouter()
 
   const submit = async (values, { setSubmitting }) => {
     try {
-      // const response = await login(values);
-      // loginUser();
-      dispatch(loginUser(values))
-      setSubmitting(false);
-      handleError(response.errors);
-    } catch (error) {
-      setSubmitting(false);
+      const response = await login(values);
+      console.log('response' , response);
+      const userData = response;
+      document.cookie = `token=${response.auth_token}; expires=${expires.toUTCString()}; path=/`;
+      dispatch(setUser(response.user));
+      const useree = useSelector(getUser);
+      console.log('user' , useree);
+      // router.push("/dashboard");
+    } 
+    catch (error) {
+      console.error("Login error:", error.message);
     }
   };
 
   return (
     <AuthLayout>
-      <Head title="Log in" />
+
+
 
       <div className="loginCommon_rightSide">
         <div className="loginCommon_rightSide_inner">
