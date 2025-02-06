@@ -21,14 +21,7 @@ const overviewbox = [
   {
     text: "Evaluation : 50%",
     evaluation: true,
-  },
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
+  }
 ];
 
 export default function Dashboard() {
