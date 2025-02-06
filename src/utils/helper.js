@@ -1,11 +1,10 @@
 import * as Yup from "yup";
-import toast from "react-hot-toast";
 
 export const handleErrorApi = (error, options = { duration: 3000 }) => {
   if (typeof error === "object") {
-    return toast.error(error.message, options);
+    console.log(error.message, options);
   }
-  toast.error(error, options);
+  console.log(error , options);
 };
 
 export const handleError = (error, setError) => {
@@ -16,6 +15,7 @@ export const handleError = (error, setError) => {
     }, {});
     if (typeof setError === "function") {
       setError(formattedErrors);
+      console.log(formattedErrors);
     }
     return formattedErrors;
   } else {
@@ -24,7 +24,7 @@ export const handleError = (error, setError) => {
 };
 
 export const handleSucess = (msg) => {
-  toast.success(msg);
+  console.log("success" , msg);
 };
 
 export const truncateContent = (text, maxLength) => {

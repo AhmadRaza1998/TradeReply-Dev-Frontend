@@ -4,6 +4,7 @@ import Cookies from 'js-cookie';
 const apiUrl = 'http://127.0.0.1:8000/api'; 
 const Url = 'http://127.0.0.1:8000'; 
 
+
 export const register = async (userData) => {
   try {
     await axios.get(`${Url}/sanctum/csrf-cookie`, {
@@ -22,21 +23,35 @@ export const register = async (userData) => {
     return response.data;
   } catch (error) {
     console.error('Registration error:', error);
-    throw error;
   }
 };
 
 export const login = async (credentials) => {
-  try {
-    const response = await axios.post(`${apiUrl}/login`, credentials);
-    const { token } = response.data;
-  
-    Cookies.set('auth_token', token, { expires: 7, secure: true });
 
+  try {
+    await axios.get(`${Url}/sanctum/csrf-cookie`, {
+      withCredentials: true
+    });
+
+    const response = await axios.post(`${apiUrl}/login`, 
+      credentials,
+      {
+        headers: {
+          "Content-Type": "application/json"
+        },
+        withCredentials: true
+      }
+    );
     return response.data;
   } catch (error) {
-    console.error('Login error:', error);
+    console.error('Registration error:', error);
     throw error;
+  
+
+    // const { token } = response.data;
+  
+    // Cookies.set('auth_token', token, { expires: 7, secure: true });
+
   }
 };
 

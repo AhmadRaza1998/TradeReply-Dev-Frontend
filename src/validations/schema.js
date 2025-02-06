@@ -27,6 +27,10 @@ export const signupSchema = Yup.object({
     .matches(/[a-z]/, errorMessages.PASSWORD_LOWERCASE)
     .matches(/[0-9]/, errorMessages.PASSWORD_NUMBER)
     .matches(/[!@#$%^&*]/, errorMessages.PASSWORD_SPECIAL_CHAR),
+    password_confirmation: Yup.string()
+    .trim()
+    .oneOf([Yup.ref('password'), null], errorMessages.PASSWORD_CONFIRMATION)
+    .required(errorMessages.PASSWORD_CONFIRMATION_REQUIRED),
 });
 
 export const forgetSchema = Yup.object({

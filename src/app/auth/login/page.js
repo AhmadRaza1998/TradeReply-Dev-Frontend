@@ -2,6 +2,7 @@
 
 import TextInput from "@/Components/UI/TextInput";
 import AuthLayout from "@/Layouts/AuthLayout";
+import InputError from "@/Components/UI/InputError";
 import Link from "next/link";
 import Head from "next/head";
 import CommonButton from "@/Components/UI/CommonButton";
@@ -10,12 +11,14 @@ import { loginSchema } from "@/validations/schema";
 import { RightArrowIcon, Logo } from "@/Components/img/svgIcons/SvgIcon";
 import ThirdPartyLogin from "@/Components/common/ThirdPartyLogin";
 import useForms from "@/Hooks/useForms";
-// import { useForm } from "@inertiajs/react";
-// import { useForm } from 'react-hook-form';
-
+import { Formik, Field, Form, ErrorMessage } from "formik";
 import LoginFooter from "@/Components/UI/LoginFooter";
 import NavLink from "@/Components/UI/NavLink";
 import AlertMsg from "@/Components/UI/AlertMsg";
+import { values } from "lodash";
+import { login } from "@/utils/auth";
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser } from '../../../redux/authSlice';
 
 const initialValues = {
   email: "",
@@ -23,23 +26,18 @@ const initialValues = {
 };
 
 export default function Login({ status }) {
-  const { data, processing, errors, isValidForm, handleChange, post } =
-  useForms({
-      fields: initialValues,
-      validationSchema: loginSchema,
-    });
-  const submit = async (e) => {
-    console.log('hello world');
-    e.preventDefault();
-    try {
-      const isValid = await isValidForm();
 
-      if (!isValid) return;
-      post("login", {
-        onFinish: () => reset("password"),
-      });
+  const dispatch = useDispatch();
+
+  const submit = async (values, { setSubmitting }) => {
+    try {
+      // const response = await login(values);
+      // loginUser();
+      dispatch(loginUser(values))
+      setSubmitting(false);
+      handleError(response.errors);
     } catch (error) {
-      handleError(error);
+      setSubmitting(false);
     }
   };
 
@@ -69,31 +67,49 @@ export default function Login({ status }) {
             <div className="loginTabs">
               <div className="loginForm">
                 <AlertMsg message={status} />
+                <Formik
+                  initialValues={initialValues}
+                  validationSchema={loginSchema}
+                  onSubmit={submit}
+                >
+                  {({
+                    handleChange,
+                    values,
+                    errors,
+                    touched,
+                    isSubmitting
+                  }) => (
+                    <Form>
+                                              <Field name="email">
+                        {({ field }) => (
+                          <TextInput
+                            {...field} // Connects Formik state
+                            placeholder="Email"
+                            type="email"
+                            error={
+                              touched.email && errors.email ? (
+                                <InputError message={errors.email} />
+                              ) : null
+                            }
+                          />
+                        )}
+                      </Field>
+                      <Field name="password">
+                        {({ field }) => (
+                          <TextInput
+                            {...field} 
+                            placeholder="Password"
+                            type="password"
+                            error={
+                              touched.password && errors.password ? (
+                                <InputError message={errors.password} />
+                              ) : null
+                            }
+                          />
+                        )}
+                      </Field>
 
-                <form onSubmit={submit}>
-                  <TextInput
-                    placeholder="Email"
-                    className=""
-                    id="email"
-                    name="email"
-                    type="email"
-                    onChange={(e) => handleChange("email", e.target.value)}
-                    // // value={data.email}
-                    // error={<InputError message={errors.email} />}
-                  />
-
-                  <TextInput
-                    placeholder="Password"
-                    id="password"
-                    className=""
-                    type="password"
-                    onChange={(e) => handleChange("password", e.target.value)}
-                    autoFocus={true}
-                    // value={data.password}
-                    // error={<InputError message={errors.password} />}
-                  />
-
-                  <div className="Forgotpassoword text-center pt-2 mb-4 pb-2">
+                      <div className="Forgotpassoword text-center pt-2 mb-4 pb-2">
                     <Link href="/auth/forgotPassword">
                       Forgot password or can&apos;t log in
                     </Link>
@@ -104,8 +120,8 @@ export default function Login({ status }) {
                       type="submit"
                       title="Log In"
                       fluid
-                      disabled={processing}
-                    />
+                      disabled={isSubmitting}
+                      />
                   </div>
                   <div className="anAccount mt-3 text-center">
                     <h6>
@@ -114,7 +130,31 @@ export default function Login({ status }) {
                       </Link>                    
                     </h6>
                   </div>
-                </form>
+
+
+                    </Form>)}
+
+                    </Formik>
+                {/* <form onSubmit={submit}>
+                  <TextInput
+                    placeholder="Email"
+                    className=""
+                    id="email"
+                    name="email"
+                    type="email"
+                    onChange={(e) => handleChange("email", e.target.value)}
+                    />
+
+                  <TextInput
+                    placeholder="Password"
+                    id="password"
+                    className=""
+                    type="password"
+                    onChange={(e) => handleChange("password", e.target.value)}
+                    autoFocus={true}
+                  />
+
+                </form> */}
               </div>
             </div>
           </div>
