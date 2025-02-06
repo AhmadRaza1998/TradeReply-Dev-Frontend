@@ -3,6 +3,7 @@
   import 'bootstrap/dist/css/bootstrap.min.css';
   import "./globals.css";
   import Providers from "@/Components/providers/Providers";
+  import { Toaster } from "react-hot-toast";
 
   const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -25,6 +26,7 @@
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
+           <Toaster position="top-right" reverseOrder={false} />
           <Providers>
           {children}
           </Providers>
