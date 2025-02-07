@@ -8,7 +8,7 @@ import useNavigate from "@/Hooks/useNavigate";
 import Switch from "@/Components/UI/Switch";
 import FaqCard from "@/Components/common/Home/FaqCard";
 import HomeLayout from "@/Layouts/HomeLayout";
-import "../../css/Home/Pricing.scss";
+import "@/css/Home/Pricing.scss";
 
 const Pricing = () => {
   const navigate = useNavigate();
