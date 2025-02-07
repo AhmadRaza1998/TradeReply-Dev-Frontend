@@ -237,17 +237,17 @@ const EducationDetail = () => {
               </Col>
               <Col xs={12} lg={8} xl={9} className="mt-0 mt-lg-0">
                 <div className="education_detail_heading">
-                    {/* <Link href="/category">
+                    <Link href="/category">
                           <p className="education_detail_tag"> Stop Loss</p>
-                    </Link> */}
+                    </Link>
                   <h1>What is Stop Loss?</h1>
                 </div>
                 <div className="education_detail_breadcrumb">
-                  {/* <CustomBreadcrumb
+                  <CustomBreadcrumb
                     href={"/education"}
                     linkname="Education Center"
                     pagename="Stop Loss"
-                  /> */}
+                  />
                 </div>
                 <div className="education_detail_postimg">
                   <img src={"/images/singlepostimg.jpg"} alt="Dynamic article title : Educational content preview" />
@@ -268,15 +268,16 @@ const EducationDetail = () => {
                 </div>
 
                 <div className="education_detail_author">
-                    {/* <Link href="/blog">
+                    <Link href="/Blog">
                           <p className="education_detail_author_btn"> Next Term </p>
-                    </Link> */}
+                    </Link>
                   {recentpostdata.map((item, index) => (
                     <div key={index}>
                       <RecentPost
                         img={item.img}
                         title={item.title}
                         text={item.text}
+                        href={""}
                       />
                     </div>
                   ))}

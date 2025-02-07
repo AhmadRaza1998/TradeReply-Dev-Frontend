@@ -166,7 +166,8 @@ const Category = (props) => {
                       title={item.title}
                       text={item.text}
                       coinname={item.coinname}
-                      onClick={() => navigate(":id")}
+                      // onClick={() => navigate(":id")}
+                      href={"/"}
                     />
                   </Col>
                 ))}
