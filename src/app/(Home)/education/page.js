@@ -16,61 +16,62 @@ const Education = () => {
       text: "The Bitcoin halving has significantly impacted big banks by intensifying their focus on the cryptocurrency market, recognizing its potential to disrupt traditional financial systems. This periodic reduction in Bitcoin supply has driven",
     },
     {
-      id : 1,
+      id : 2,
       title: "Ticker/Symbol",
       text: "The Bitcoin halving has significantly impacted big banks by intensifying their focus on the cryptocurrency market, recognizing its potential to disrupt traditional financial systems. This periodic reduction in Bitcoin supply has driven",
     },
     {
-      id : 1,
+      id : 3,
       title: "Order Type",
       text: "The Bitcoin halving has significantly impacted big banks by intensifying their focus on the cryptocurrency market, recognizing its potential to disrupt traditional financial systems. This periodic reduction in Bitcoin supply has driven",
     },
     {
-      id : 1,
+      id : 4,
       title: "Stop loss",
       text: "The Bitcoin halving has significantly impacted big banks by intensifying their focus on the cryptocurrency market, recognizing its potential to disrupt traditional financial systems. This periodic reduction in Bitcoin supply has driven",
     },
     {
-      id : 1,
+      id : 5,
       title: "Asset Type",
       text: "The Bitcoin halving has significantly impacted big banks by intensifying their focus on the cryptocurrency market, recognizing its potential to disrupt traditional financial systems. This periodic reduction in Bitcoin supply has driven",
     },
     {
-      id : 1,
+      id : 6,
       title: "Ticker/Symbol",
       text: "The Bitcoin halving has significantly impacted big banks by intensifying their focus on the cryptocurrency market, recognizing its potential to disrupt traditional financial systems. This periodic reduction in Bitcoin supply has driven",
     },
     {
-      id : 1,
+      id : 7,
       title: "Order Type",
       text: "The Bitcoin halving has significantly impacted big banks by intensifying their focus on the cryptocurrency market, recognizing its potential to disrupt traditional financial systems. This periodic reduction in Bitcoin supply has driven",
     },
     {
-      id : 1,
+      id : 8,
       title: "Stop loss",
       text: "The Bitcoin halving has significantly impacted big banks by intensifying their focus on the cryptocurrency market, recognizing its potential to disrupt traditional financial systems. This periodic reduction in Bitcoin supply has driven",
     },
     {
-      id : 1,
+      id : 9,
       title: "Asset Type",
       text: "The Bitcoin halving has significantly impacted big banks by intensifying their focus on the cryptocurrency market, recognizing its potential to disrupt traditional financial systems. This periodic reduction in Bitcoin supply has driven",
     },
     {
-      id : 1,
+      id : 10,
       title: "Ticker/Symbol",
       text: "The Bitcoin halving has significantly impacted big banks by intensifying their focus on the cryptocurrency market, recognizing its potential to disrupt traditional financial systems. This periodic reduction in Bitcoin supply has driven",
     },
     {
-      id : 1,
+      id : 11,
       title: "Order Type",
       text: "The Bitcoin halving has significantly impacted big banks by intensifying their focus on the cryptocurrency market, recognizing its potential to disrupt traditional financial systems. This periodic reduction in Bitcoin supply has driven",
     },
     {
-      id : 1,
+      id : 12,
       title: "Stop loss",
       text: "The Bitcoin halving has significantly impacted big banks by intensifying their focus on the cryptocurrency market, recognizing its potential to disrupt traditional financial systems. This periodic reduction in Bitcoin supply has driven",
     },
   ];
+
   return (
     <HomeLayout>
       <div className="education_layout">
@@ -111,7 +112,7 @@ const Education = () => {
                 </Col>
               </Row>
               <div>
-                {termdata?.map((item, index) => {
+                {termdata?.map((item, index) => { 
                   return (
                     <Row
                       key={index}
@@ -123,7 +124,7 @@ const Education = () => {
                       <Col xs={6} md={3} lg={2} className="order-md-last">
                         <div className="text-end">
 
-                        <Link href={`/education/1`}>
+                        <Link href={`/education/${item?.id}`}>
                             <CommonButton
                                 type="button"
                                 title="Read More"
