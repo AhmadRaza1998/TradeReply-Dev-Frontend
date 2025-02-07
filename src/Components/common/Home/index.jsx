@@ -8,6 +8,7 @@ import Testimonials from "./Testimonials";
 import HowitWorks from "./HowitWorks";
 import FeaturedResources from "./FeaturedResources";
 import LearningResources from "./LearningResources";
+import { t } from '@/lib/useTranslation';
 
 export default function Home() {
   return (
