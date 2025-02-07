@@ -47,7 +47,7 @@ export default function Login({ status }) {
     if (tokenFromCookies) {
       router.push("/");
     } else {
-      router.push("/auth/login");
+      router.push("/login");
     }
   }, [token, router]);
 
