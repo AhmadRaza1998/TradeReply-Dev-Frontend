@@ -1,6 +1,6 @@
 
 import { Container } from "react-bootstrap";
-import { Link } from "next/link";
+import Link from "next/link";
 import HomeLayout from "@/Layouts/HomeLayout";
 import "../../../css/Home/PrivacyPolicy.scss";
 

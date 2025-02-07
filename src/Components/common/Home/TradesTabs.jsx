@@ -1,3 +1,5 @@
+'use client';
+
 import { Container, Nav, Tab } from "react-bootstrap";
 import {
   BrashIcon,

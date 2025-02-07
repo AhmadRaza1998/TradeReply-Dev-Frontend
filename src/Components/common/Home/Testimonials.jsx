@@ -1,3 +1,6 @@
+
+'use client';
+
 import { Container } from "react-bootstrap";
 import Slider from "react-slick";
 import { ArtArrowIcon, QuoteIcon } from "@/Components/img/svgIcons/SvgIcon";
