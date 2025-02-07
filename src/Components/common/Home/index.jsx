@@ -1,3 +1,5 @@
+'use client';
+
 import BannerSec from "./BannerSec";
 import AnswerTrades from "./AnswerTrades";
 import TradesTabs from "./TradesTabs";
@@ -6,10 +8,12 @@ import Testimonials from "./Testimonials";
 import HowitWorks from "./HowitWorks";
 import FeaturedResources from "./FeaturedResources";
 import LearningResources from "./LearningResources";
+import { t } from '@/lib/useTranslation';
 
 export default function Home() {
   return (
     <div className="home" id="home-page">
+      {t('welcome')};
       <BannerSec />
       <AnswerTrades />
       <TradesTabs />
