@@ -158,7 +158,7 @@ const Header = () => {
 
               <div className="languageMenu d-xl-none">
                 {renderUserDropdown()}
-                <NavLink href="/auth/login" className="nav-link">
+                <NavLink href="/login" className="nav-link">
                   <span className="me-3">
                     <SignoutIcon />
                   </span>
@@ -259,7 +259,7 @@ const UserDropdown = ({ signIn }) => (
         </>
       ) : (
         <>
-          <NavLink href="/auth/login" className="dropdown-item">
+          <NavLink href="/login" className="dropdown-item">
             <SignoutIcon /> Log In
           </NavLink>
           <NavLink href="#" className="dropdown-item">

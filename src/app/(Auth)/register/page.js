@@ -35,7 +35,7 @@ export default function Register() {
 
       if(response?.status){
         toast.success(response?.message);
-        window.location.href = "/auth/login";
+        window.location.href = "/login";
       }
     } catch (error) {
       setSubmitting(false);
@@ -135,7 +135,7 @@ export default function Register() {
                       <div className="anAccount mt-3 text-center">
                         <h6>
                           Already have an account?{" "}
-                          <NavLink href="/auth/login">Login</NavLink>
+                          <NavLink href="/login">Login</NavLink>
                         </h6>
                       </div>
                     </Form>

@@ -24,7 +24,7 @@ const Brokers = () => {
                 platforms to automatically sync your trades, ensuring all your
                 trading data is seamlessly integrated for comprehensive analysis
                 and performance tracking. To connect an account,{" "}
-                <Link href="/auth/login">Login</Link> or{" "}
+                <Link href="/login">Login</Link> or{" "}
                 <Link href="/auth/register"> Create an Account</Link>.
               </p>
               <div className="brokers_content_search">
