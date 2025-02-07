@@ -1,3 +1,5 @@
+'use client';
+
 import BannerSec from "./BannerSec";
 import AnswerTrades from "./AnswerTrades";
 import TradesTabs from "./TradesTabs";
@@ -10,6 +12,7 @@ import LearningResources from "./LearningResources";
 export default function Home() {
   return (
     <div className="home" id="home-page">
+      {t('welcome')};
       <BannerSec />
       <AnswerTrades />
       <TradesTabs />
