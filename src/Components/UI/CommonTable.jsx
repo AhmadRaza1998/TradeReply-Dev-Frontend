@@ -1,3 +1,6 @@
+
+'use client';
+
 import { useState } from "react";
 import { Table } from "react-bootstrap";
 import "../../css/common/CommonTable.scss";
