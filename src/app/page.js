@@ -2,12 +2,10 @@ import Home from "@/Components/common/Home";
 import HomeLayout from "@/Layouts/HomeLayout";
 import Head from "next/head";
 import "../css/Home/home.scss";
-import Layout from "./layout";
 
 
 export default function Welcome() {
   return (
-    <Layout>
       <HomeLayout>
         <Head>
           <link rel="canonical" href="https://www.tradereply.com/" />
@@ -33,7 +31,6 @@ export default function Welcome() {
 
         <Home />
       </HomeLayout>
-    </Layout>
   );
 }
 

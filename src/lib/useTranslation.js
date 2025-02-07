@@ -1,11 +1,14 @@
-'use client';
+"use client"; // Since hooks use client-side state
 
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
+import { useLanguage } from "@/context/LanguageContext";
 
 export const t = (key) => {
   const { t } = useTranslation();
-  const translatedText = t(key);
-
-  return translatedText === key ? key : translatedText;
+  return t(key) || key; // Return key if translation is missing
 };
 
+// Hook to get and change language
+export const useSetLanguage = () => {
+  return useLanguage(); // Returns { language, changeLanguage }
+};
