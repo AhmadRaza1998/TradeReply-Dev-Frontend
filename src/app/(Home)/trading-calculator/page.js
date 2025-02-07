@@ -6,8 +6,8 @@ import { CartIcon } from "@/Components/img/svgIcons/SvgIcon";
 import CustomSelect from "@/Components/UI/Select";
 import CustomBreadcrumb from "@/Components/UI/CustomBreadcrumb";
 import CustomPagination from "@/Components/UI/CustomPagination";
-import HomeLayout from "@/Layouts/HomeLayout";
-import "../../css/Home/Marketplace.scss";
+import HomeLayout from "@/Layouts/HomeLayout"; 
+import "@/css/Home/Marketplace.scss";
 
 const Marketplace = () => {
   const options = [

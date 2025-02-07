@@ -6,13 +6,18 @@ import CommonSearch from "@/Components/UI/CommonSearch";
 import CommonButton from "@/Components/UI/CommonButton";
 import { CircularProgressbarWithChildren } from "react-circular-progressbar";
 import CustomBreadcrumb from "@/Components/UI/CustomBreadcrumb";
-// import Link from "next/link";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { RightArrowIcon } from "@/Components/img/svgIcons/SvgIcon";
-import "../../../css/Home/EducationDetail.scss";
+import "@/css/Home/EducationDetail.scss";
 import HomeLayout from "@/Layouts/HomeLayout";
+import useNavigate from "@/Hooks/useNavigate";
+
 
 const EducationDetail = () => {
+
+  const navigate = useNavigate();
+
   const [isActive, setIsActive] = useState(false);
   const toggleClass = () => {
     setIsActive(!isActive);
@@ -144,13 +149,12 @@ const EducationDetail = () => {
                     }
                   >
                     <div className="collapse_wrap">
-                      <div className="education_detail_sidebar_top">
-                        {/* <Link href="/education"> */}
+                      <div className="education_detail_sidebar_top"> 
                             <CommonButton
                             title="Back to Education center"
                             className="w-100"
-                            />
-                        {/* </Link> */}
+                            onClick={() => navigate('/education')}
+                            /> 
                         <div className="education_search mt-4">
                           <CommonSearch
                             placeholder="Search Key Terms"
@@ -233,22 +237,17 @@ const EducationDetail = () => {
               </Col>
               <Col xs={12} lg={8} xl={9} className="mt-0 mt-lg-0">
                 <div className="education_detail_heading">
-                    {/* <Link href="/category"> */}
-                        <button
-                            type="button"
-                            className="education_detail_tag"
-                        >
-                            Stop loss
-                        </button>
-                    {/* </Link> */}
+                    {/* <Link href="/category">
+                          <p className="education_detail_tag"> Stop Loss</p>
+                    </Link> */}
                   <h1>What is Stop Loss?</h1>
                 </div>
                 <div className="education_detail_breadcrumb">
-                  <CustomBreadcrumb
-                    href="/education"
+                  {/* <CustomBreadcrumb
+                    href={"/education"}
                     linkname="Education Center"
                     pagename="Stop Loss"
-                  />
+                  /> */}
                 </div>
                 <div className="education_detail_postimg">
                   <img src={"/images/singlepostimg.jpg"} alt="Dynamic article title : Educational content preview" />
@@ -269,14 +268,9 @@ const EducationDetail = () => {
                 </div>
 
                 <div className="education_detail_author">
-                    {/* <Link href="/blog"> */}
-                        <button
-                            type="button"
-                            className="education_detail_author_btn"
-                        >
-                            Next Term
-                        </button>
-                    {/* </Link> */}
+                    {/* <Link href="/blog">
+                          <p className="education_detail_author_btn"> Next Term </p>
+                    </Link> */}
                   {recentpostdata.map((item, index) => (
                     <div key={index}>
                       <RecentPost
