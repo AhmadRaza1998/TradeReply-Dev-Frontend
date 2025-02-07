@@ -6,7 +6,7 @@ import CommonSearch from "@/Components/UI/CommonSearch";
 import CommonButton from "@/Components/UI/CommonButton";
 import CustomPagination from "@/Components/UI/CustomPagination";
 import HomeLayout from "@/Layouts/HomeLayout";
-import "../../css/Home/Education.scss";
+import "../../../css/Home/Education.scss";
 
 const Education = () => {
   const termdata = [

@@ -7,7 +7,7 @@ import CommonButton from "@/Components/UI/CommonButton";
 import { CheckIcon } from "@/Components/img/svgIcons/SvgIcon";
 import useNavigate from "@/Hooks/useNavigate";
 import HomeLayout from "@/Layouts/HomeLayout";
-import "../../css/Home/Features.scss";
+import "../../../css/Home/Features.scss";
 
 const stockimg = "/images/tradereply-stock-analysis.png";
 const logimg = "/images/tradereply-log-trades.png";
