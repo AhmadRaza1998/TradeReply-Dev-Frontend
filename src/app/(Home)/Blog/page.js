@@ -4,6 +4,8 @@ import { Col, Container, Row } from "react-bootstrap";
 import PostCard from "@/Components/common/Home/PostCard";
 import RecentPost from "@/Components/common/Home/RecentPost";
 import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import CustomPagination from "@/Components/UI/CustomPagination";
 import HomeLayout from "@/Layouts/HomeLayout";
 import "../../../css/Home/Blog.scss";
