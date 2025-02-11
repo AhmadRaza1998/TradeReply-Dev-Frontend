@@ -8,13 +8,13 @@ export const loginUser = createAsyncThunk(
     try {
       const credentials = { email, password };
       const response = await login(credentials);
-      console.log("Login User",response?.auth_token);
+      console.log("Login User",response?.token);
       
       if (response.errors) {
         return rejectWithValue(response.errors); // Return validation errors
       }
 
-      Cookies.set("authToken", response.auth_token, { expires: 1 }); 
+      Cookies.set("authToken", response.token, { expires: 1 }); 
 
       return response; // Return user data
     } catch (error) {
