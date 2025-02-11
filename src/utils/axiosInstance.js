@@ -11,7 +11,7 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('auth_token');
+    const token = localStorage.getItem('authToken');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -35,10 +35,8 @@ axiosInstance.interceptors.response.use(
         console.log('Unauthorized access. Redirecting to login...');
         
         const router = useRouter();
-        router.push('/login'); 
-
-        
-        localStorage.removeItem('auth_token');
+        router.push('/login');         
+        localStorage.removeItem('authToken');
       }
 
       
