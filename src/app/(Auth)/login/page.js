@@ -120,7 +120,7 @@ export default function Login({ status }) {
                       </Field>
 
                       <div className="Forgotpassoword text-center pt-2 mb-4 pb-2">
-                        <Link href="/auth/forgotPassword">
+                        <Link href="/forget-password">
                           Forgot password or can&apos;t log in
                         </Link>
                       </div>
@@ -135,7 +135,7 @@ export default function Login({ status }) {
                       </div>
                       <div className="anAccount mt-3 text-center">
                         <h6>
-                          <Link href="/auth/register">
+                          <Link href="/register">
                             Create a free TradeReply Account
                           </Link>
                         </h6>

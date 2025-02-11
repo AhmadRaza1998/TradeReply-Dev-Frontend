@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 export function middleware(req) {
     const token = req.cookies.get('authToken'); 
     const protectedRoutes = ['/user']; 
-    const authRoutes = ['/login' , '/register' , '/forgot-password' , '/verify-email' , '/home']
+    const authRoutes = ['/login' , '/register' , '/forget-password' , '/verify-email' , '/home']
 
     if (protectedRoutes.some((route) => req.nextUrl.pathname.startsWith(route))) {
         if (!token) {
