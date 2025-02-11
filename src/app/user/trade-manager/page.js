@@ -9,10 +9,9 @@ import {
   SettingIcon,
   SolidRedArrowIcon,
 } from "@/Components/img/svgIcons/SvgIcon";
-import useNavigate from "@/Hooks/useNavigate";
+import Link from "next/link";
 
 const TradeManager = () => {
-  const navigate = useNavigate();
 
   const entrylist = [
     { title: "Entry Date Ticker", text: "Draft 4" },
@@ -53,37 +52,40 @@ const TradeManager = () => {
             </button>
           </div>
           <div className="trade_manager_btns d-sm-flex">
+            <Link href="/user/trade-builder">
             <CommonButton
-              onClick={() => navigate("/dashboard/trade-builder")}
               title="Manual Trade"
               onlyIcon={<PlusIcon />}
               className="w-50 mb-3 mb-sm-0 me-sm-2"
             />
+            </Link>
+            <Link href="/user/trade-importer">
             <CommonButton
-              onClick={() => navigate("/trade-importer")}
               title="Import Trade"
               onlyIcon={<PlusIcon />}
               className="w-50 ms-sm-2"
             />
+            </Link>
           </div>
           <div className="trade_manager_entrylist">
             {entrylist.map((item, index) => (
+                            <Link href="/user/trade-builder">
               <div
                 key={index}
                 className="trade_manager_entrylist_box"
-                onClick={() => navigate("/trade-builder")}
               >
                 <h5>{item?.title}</h5>
                 <h5>{item?.text}</h5>
               </div>
+                            </Link>
             ))}
           </div>
           <div className="trade_manager_trade_entry">
             {entrydata.map((item, index) => (
+                            <Link href="/user/trade-builder">                
               <div
                 key={index}
                 className={`trade_manager_trade_entry_box Redgrandient ${index === 1 ? "greengrandient" : ""}`}
-                onClick={() => navigate("/trade-builder")}
               >
                 <span className="solidArrow red_arrow me-3">
                   <SolidRedArrowIcon />
@@ -102,6 +104,7 @@ const TradeManager = () => {
                   <SolidRedArrowIcon />
                 </span>
               </div>
+                            </Link>
             ))}
           </div>
         </Container>

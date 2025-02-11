@@ -1,6 +1,7 @@
 'use client';
 
 import NavLink from "@/Components/UI/NavLink";
+import Link from "next/link";
 import {
   CalculatorIcon,
   PlusIcon,
@@ -87,40 +88,40 @@ const Sidebar = () => {
           {isAdmin ? (
             adminRoutes.map((item) => (
               <div className="linkList" key={item.path}>
-                <NavLink href={item.path}>
+                <Link href={item.path}>
                   <span className="linktext">{item.name.slice(0, 1)}</span>{" "}
                   <span className="fulltext"> {item.name}</span>
-                </NavLink>
+                </Link>
               </div>
             ))
           ) : (
             <>
               <div className="linkList">
                 <div className="linkList">
-                  <NavLink href="/user/trade-manager">
+                  <Link href="/user/trade-manager">
                     <span className="linktext">TM</span>{" "}
                     <span className="fulltext">Trade Manager</span>
-                  </NavLink>
+                  </Link>
                 </div>
 
-                <NavLink href="/user/strategy-manager">
+                <Link href="/user/strategy-manager">
                   <span className="linktext">SM</span>{" "}
                   <span className="fulltext">Strategy Manager</span>
-                </NavLink>
+                </Link>
               </div>
               <div className="linkList">
-                <NavLink href="/user/trading-calculator">
+                <Link href="/user/trading-calculator">
                   <span className="linktext">
                     <CalculatorIcon />
                   </span>{" "}
                   <span className="fulltext">Trading Calculators</span>
-                </NavLink>
+                </Link>
               </div>
               <div className="linkList">
-                <NavLink href="/user/dashboard">
+                <Link href="/user/dashboard">
                   <span className="linktext">1</span>{" "}
                   <span className="fulltext"> Dashboard1</span>
-                </NavLink>
+                </Link>
               </div>
             </>
           )}
