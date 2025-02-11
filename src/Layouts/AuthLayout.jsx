@@ -2,6 +2,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from "react-bootstrap";
 import "../css/auth/authGlobals.scss";
 
+
+
 export default function AuthLayout({ children }) {
   return (
     <div className="loginCommon">

@@ -51,10 +51,10 @@ export default function Login({ status }) {
     }
   }, [token, router]);
 
+
   return (
     <AuthLayout>
       <Head title="Log in" />
-
       <div className="loginCommon_rightSide">
         <div className="loginCommon_rightSide_inner">
           <div className="backbtn">
@@ -152,5 +152,6 @@ export default function Login({ status }) {
         </div>
       </div>
     </AuthLayout>
+
   );
 }
