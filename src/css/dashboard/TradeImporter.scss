@@ -34,14 +34,14 @@
             }
         }
 
-        // .trade_manager_trade_entry_box {
-        //     .green_arrow {
-        //         svg {
-        //             path {
-        //                 fill: $green !important;
-        //             }
-        //         }
-        //     }
-        // }
+        .trade_manager_trade_entry_box {
+            .green_arrow {
+                svg {
+                    path {
+                        fill: $green !important;
+                    }
+                }
+            }
+        }
     }
 }
