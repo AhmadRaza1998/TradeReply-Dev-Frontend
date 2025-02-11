@@ -19,6 +19,7 @@ import NavLink from "./NavLink";
 import "../../css/common/Header.scss";
 import { isEmpty } from "lodash";
 import useNavigate from "@/Hooks/useNavigate";
+import Link from "next/link";
 
 const Header = () => {
   // const props = usePage();
@@ -218,11 +219,13 @@ const Header = () => {
               {renderUserDropdown()}
             </div>
             {isEmpty(user) && (
-              <CommonButton
-                onClick={() => navigate("/pricing")}
-                className="gradient-btn"
-                title="Get started"
-              />
+              <Link href="/pricing">
+                <CommonButton
+                  className="gradient-btn"
+                  title="Get started"
+                />
+              </Link>
+
             )}
           </div>
         </Container>

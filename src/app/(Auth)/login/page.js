@@ -35,7 +35,7 @@ export default function Login({ status }) {
     if (response.payload?.errors) {
       setErrors(response.payload.errors); // Display backend errors
     } else if (response.payload?.token) {
-      router.push("/");
+      router.push("/user/dashboard");
     }
 
     setSubmitting(false);
