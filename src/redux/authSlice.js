@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { login } from "@/utils/auth";
 import Cookies from "js-cookie";
+import toast from "react-hot-toast";
 
 export const loginUser = createAsyncThunk(
   "auth/login",
@@ -18,7 +19,8 @@ export const loginUser = createAsyncThunk(
 
       return response; // Return user data
     } catch (error) {
-      return rejectWithValue(error.message);
+      console.log(error.response?.data?.message);
+      toast.error(error.response?.data?.message) 
     }
   }
 );

@@ -1,0 +1,47 @@
+@use "../theme/var" as *;
+
+.trade_importer {
+    &_card {
+        padding: 1.25rem;
+        border-radius: 1.25rem;
+        background: $gradientcardblue;
+        border: 2px solid $baseclr;
+
+        &.greengrandient {
+            border: 0;
+        }
+
+        &_head {
+            font-size: 3rem;
+            font-weight: bolder;
+        }
+
+        &_message {
+            background-color: rgba(50, 205, 51, 0.7);
+            padding: 1.6rem 1.25rem;
+            border-radius: 1.25rem;
+
+            h4 {
+                margin-bottom: 1rem;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+
+            &.message_redbg {
+                background-color: rgba(255, 105, 106, 0.7);
+            }
+        }
+
+        // .trade_manager_trade_entry_box {
+        //     .green_arrow {
+        //         svg {
+        //             path {
+        //                 fill: $green !important;
+        //             }
+        //         }
+        //     }
+        // }
+    }
+}

@@ -1,0 +1,429 @@
+@use "../theme/var" as *;
+
+.trade_calculators {
+    .trade_head {
+        position: relative;
+
+        .setting_btn {
+            background-color: transparent;
+            border: 0;
+            position: absolute;
+            right: 0;
+
+            svg {
+                path {
+                    fill: $white;
+                }
+
+                @media (max-width: 1199px) {
+                    width: 22px;
+                    height: 22px;
+                }
+            }
+
+            &:hover {
+                svg {
+                    path {
+                        fill: $clre6e6e6;
+                    }
+                }
+            }
+        }
+    }
+
+    &_card {
+        background-color: $clr031940;
+        border-radius: 1rem;
+        padding: 1rem 0.625rem;
+
+        .trade_head {
+            h6 {
+                text-transform: uppercase;
+                text-align: center;
+                padding: 0 20px;
+
+                @media (max-width: 1500px) {
+                    font-size: 16px;
+                }
+
+                @media (max-width: 1365px) {
+                    font-size: 14px;
+                }
+
+                @media (min-width: 992px) and (max-width: 1199px) {
+                    font-size: 14px;
+                }
+            }
+
+            .CustomTooltip {
+                position: absolute;
+                right: 0;
+            }
+        }
+
+        &_risk {
+            .mob_winrate {
+                padding-bottom: 10px;
+                padding-left: 16.66%;
+                position: relative;
+                display: block;
+
+                @media (max-width: 1500px) {
+                    display: block;
+                }
+
+                &::after,
+                &::before {
+                    content: "|";
+                    position: absolute;
+                    bottom: 13px;
+                    left: 16.66%;
+                    width: 1px;
+                    height: 15px;
+                    background-color: $textclr;
+                    z-index: 0;
+                }
+
+                &::before {
+                    right: 0;
+                    left: auto;
+                }
+
+                h5 {
+                    font-size: 14px;
+                    font-weight: 700;
+                    line-height: 21px;
+                    color: $clrc5c5d5;
+                    text-align: center;
+                    position: relative;
+                    z-index: 1;
+
+                    &::after,
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        bottom: 10px;
+                        left: 0;
+                        width: 35%;
+                        height: 1px;
+                        background-color: $textclr;
+                        z-index: -1;
+                    }
+
+                    &::after {
+                        right: 0;
+                        left: auto;
+                    }
+                }
+            }
+
+            .risk_thead {
+                display: flex;
+                margin: 0 -3px 10px;
+
+                li {
+                    font-size: 14px;
+                    font-weight: 700;
+                    line-height: 21px;
+                    color: $white;
+                    width: 16.66%;
+                    padding: 0 3px;
+
+                    .win_R,
+                    .risk_text {
+                        display: none;
+
+                        @media (max-width: 1500px) {
+                            display: none;
+                        }
+                    }
+
+                    .rr_text {
+                        display: block;
+
+                        @media (max-width: 1500px) {
+                            display: block;
+                        }
+                    }
+
+                    @media (max-width: 767px) {
+                        &:first-child {
+                            min-width: 65px;
+                        }
+                    }
+
+                    span {
+                        color: $clrc5c5d5;
+                    }
+                }
+            }
+
+            .risk_tboday {
+                ul {
+                    display: flex;
+                    align-items: center;
+                    margin: 0 -3px;
+
+                    li {
+                        color: $white;
+                        width: 16.66%;
+                        padding: 0 3px 5px;
+
+                        @media (max-width: 767px) {
+                            font-size: 14px;
+                            padding: 0 3px 10px;
+
+                            &:first-child {
+                                min-width: 65px;
+                            }
+                        }
+
+                        h6 {
+                            font-size: 14px;
+                            font-weight: 700;
+                            line-height: 21px;
+                            background-color: rgba(0, 0, 0, 0.4);
+                            border-radius: 5px;
+                            padding: 5px;
+                            min-height: 20px;
+
+                            span {
+                                display: none;
+                            }
+                            
+                            &.redlight_text {
+                                background-color: $redlighttext !important;
+                            }
+
+                            &.yellowlight_text {
+                                background-color: $yellowlighttext !important;
+                            }
+
+                            &.greenlight_text {
+                                background-color: $greenlighttext !important;
+                            }
+                            // @media (max-width: 1500px) {
+                            //     min-height: 20px;
+
+
+                            // }
+
+                            @media (max-width: 575px) {
+                                padding: 5px 8px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            h6 {
+                font-size: 14px;
+                font-weight: 700;
+                line-height: 21px;
+                background-color: rgba(0, 0, 0, 0.3);
+                border-radius: 5px;
+                padding: 5px 10px;
+                font-style: italic;
+
+                @media (max-width: 991px) {
+                    padding: 5px 6px;
+                }
+            }
+
+            &.position_size {
+                @media (max-width: 1449px) {
+                    table-layout: auto;
+                    overflow-x: auto;
+                }
+
+                .risk_thead,
+                .risk_tboday {
+                    li {
+                        @media (max-width: 1449px) {
+                            width: auto;
+                            min-width: 120px;
+
+                            &:first-child {
+                                min-width: 120px;
+                            }
+                        }
+
+                        @media (max-width: 767px) {
+                            width: auto;
+                            min-width: 110px;
+
+                            &:first-child {
+                                min-width: 110px;
+                            }
+                        }
+
+                        h6 {
+                            background-color: rgba(102, 102, 102, 0.7);
+                            border-radius: 5px;
+                            font-size: 14px;
+                            font-weight: 700;
+                            line-height: 21px;
+                            color: $white;
+                            font-style: normal;
+                            text-align: center;
+
+                            @media (max-width: 575px) {
+                                font-size: 14px;
+                                line-height: 18px;
+                                padding: 5px 3px;
+                            }
+
+                        }
+                    }
+                }
+
+                .risk_tboday {
+                    ul {
+                        li {
+                            h6 {
+                                background-color: rgba(51, 51, 51, 0.7);
+                                font-style: normal;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &_tradecal {
+            &_tradebox {
+                background-color: rgba(51, 51, 51, 0.7);
+                padding: 2px 10px;
+                border-radius: 5px;
+                margin-bottom: 5px;
+
+                h6 {
+                    text-align: center;
+                    font-size: 14px;
+                    font-weight: 700;
+                    line-height: 21px;
+                }
+            }
+
+            &_tradebox1 {
+                background-color: $white;
+                padding: 2px 10px;
+                border-radius: 5px;
+                margin-bottom: 5px;
+
+                h6 {
+                    text-align: center;
+                    font-size: 14px;
+                    font-weight: 700;
+                    color: $black;
+                    line-height: 21px;
+                }
+
+                &.whitelight_bg {
+                    h6 {
+                        color: $white;
+                    }
+                }
+            }
+        }
+
+        &_divider {
+            height: 1px;
+            width: 100%;
+            display: block;
+            background-color: #04498C;
+            margin: 20px 0;
+        }
+
+        .tradeacct {
+            width: 100%;
+
+            h6 {
+                background-color: $black;
+                padding: 8px 15px;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                color: $white;
+                font-size: 1.15rem;
+                line-height: normal;
+
+                @media (max-width: 1500px) {
+                    font-size: 1rem;
+                    padding: 8px 10px;
+                }
+
+                @media (max-width: 1199px) {
+                    font-size: 0.875rem;
+                    padding: 8px 10px;
+                }
+
+                @media (max-width: 767px) {
+                    font-size: 0.875rem;
+                }
+            }
+
+            p {
+                background-color: $white;
+                padding: 8px 15px;
+                border-bottom-left-radius: 10px;
+                border-bottom-right-radius: 10px;
+                color: $black;
+                font-size: 1.25rem;
+                font-weight: 600;
+                margin: 0;
+                line-height: normal;
+                min-height: 40px;
+
+                @media (max-width: 1199px) {
+                    font-size: 1rem;
+                    padding: 8px 10px;
+                }
+            }
+
+            &.value_change {
+                p {
+                    background-color: $clr04498C;
+                    min-height: 60px;
+                    color: $white;
+                }
+            }
+        }
+    }
+
+    .risktext {
+        // display: none;
+        display: flex;
+        justify-content: space-around;
+
+        h5 {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 18px;
+            text-align: left;
+            display: flex;
+            align-items: center;
+
+            span {
+                width: 10px;
+                height: 10px;
+                border-radius: 2px;
+                display: flex;
+                margin-right: 5px;
+
+                &.yellow_bg {
+                    background-color: $yellowlighttext;
+                    color: $yellowlighttext;
+                }
+
+                &.red_bg {
+                    background-color: $redlighttext !important;
+                    color: $red;
+                }
+            }
+
+            &.red_text {
+                color: $redlighttext !important;
+            }
+        }
+    }
+}
