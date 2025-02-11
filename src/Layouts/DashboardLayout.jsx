@@ -3,18 +3,22 @@ import SideBar from "@/Components/common/Dashboard/SideBar";
 import Header from "@/Components/UI/Header";
 import Footer from "@/Components/UI/Footer";
 import "../css/dashboard/layout.scss";
+import { LanguageProvider } from "@/context/LanguageContext";
+
 
 const DashboardLayout = ({ children }) => {
   return (
     <>
-      <Header />
-      <div className="admin_layout">
-        <div className="admin_layout_sidebar">
-          <SideBar />
+      <LanguageProvider>
+        <Header />
+        <div className="admin_layout">
+          <div className="admin_layout_sidebar">
+            <SideBar />
+          </div>
+          <div className="admin_layout_content">{children}</div>
         </div>
-        <div className="admin_layout_content">{children}</div>
-      </div>
-      <Footer />
+        <Footer />
+      </LanguageProvider>
     </>
   );
 };

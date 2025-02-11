@@ -1,82 +1,81 @@
 
 'use client';
 
-import { Container } from "react-bootstrap";
-import Link from "next/link";
+import DashboardLayout from "@/Layouts/DashboardLayout";
+import { Col, Container, Row } from "react-bootstrap";
+import AdminHeading from "@/Components/common/Dashboard/AdminHeading";
+import CommonHead from "@/Components/common/Dashboard/CommonHead";
 import {
-  SolidInfoIcon,
-  RightSolidArrowIcon,
+  PlusIcon,
+  SettingIcon,
+  TradeIcon,
 } from "@/Components/img/svgIcons/SvgIcon";
-import CommonSearch from "@/Components/UI/CommonSearch";
-import FaqCard from "@/Components/common/Home/FaqCard";
-import CommonTooltip from "@/Components/UI/CommonTooltip";
-import BrokersTable from "@/Components/UI/BrokersTable";
-import "../../../css/Home/Brokers.scss";
-import HomeLayout from "@/Layouts/HomeLayout";
+import "../../../css/dashboard/Dashboard.scss";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "../../globals.css";
+
+const overviewbox = [
+  {
+    text: "Success Score: 97%",
+    score: true,
+  },
+  {
+    text: "Evaluation : 50%",
+    evaluation: true,
+  }
+];
 
 const Brokers = () => {
+
+
   return (
-    <HomeLayout>
-      <div className="brokers py-100">
-        <Container>
-          <section className="brokers_inner">
-            <div className="brokers_content">
-              <h1>TradeReply Supported Brokers & Integrations</h1>
-              <p>
-                Connect your TradeReply.com account to your brokers and trading
-                platforms to automatically sync your trades, ensuring all your
-                trading data is seamlessly integrated for comprehensive analysis
-                and performance tracking. To connect an account,{" "}
-                <Link href="/login">Login</Link> or{" "}
-                <Link href="/auth/register"> Create an Account</Link>.
-              </p>
-              <div className="brokers_content_search">
-                <CommonSearch
-                  placeholder="Search for Broker or Integration"
-                  icon={true}
-                />
-              </div>
-
-              <h6>Missing an integration? Submit a request here</h6>
-
-              <div className="mt-2">
-                <Link
-                  href="#"
-                  className="d-inline-flex align-items-center submit_request"
-                >
-                  Submit a Request{" "}
-                  <span className="ms-3">
-                    <RightSolidArrowIcon />
-                  </span>
-                </Link>
-              </div>
+      <DashboardLayout>
+        <div className="dashboard">
+          <Container>
+            <CommonHead />
+            <div className="trade_head justify-content-center mb-0 py-40">
+              <AdminHeading heading="Account Overview" centered />
+              <button className="setting_btn" type="button">
+                <SettingIcon />
+              </button>
             </div>
-
-            <div className="brokers_tablesec">
-              <div className="brokers_tablesec_inner">
-                <div className="d-flex align-items-center justify-content-end mb-3">
-                  <CommonTooltip
-                    className="d-flex align-items-center"
-                    content="Manual entry lets you input trading data using a form builder or upload via Template or Broker CSV files. AutoSync connects directly to your broker via API, automatically updating your data in real-time with limited manual effort."
-                    position="top-left"
+            <Row className="dashboard_card gx-xl-5">
+              {overviewbox.map((item, index) => (
+                <Col lg={4} sm={6} md={4} xs={12} key={index} className="d-flex">
+                  <div
+                    className={`overview_box w-100 ${item?.score ? "scorebox darkbox" : ""} ${item?.evaluation ? "evalbox darkbox" : ""}`}
                   >
-                    <SolidInfoIcon />
-                    <h6 className="mb-0 ms-3">
-                      Sync Options: Manual vs. AutoSync
-                    </h6>
-                  </CommonTooltip>
-                </div>
-              </div>
-              <BrokersTable />
-            </div>
-
-            <div className="brokers_faqs">
-              <FaqCard />
-            </div>
-          </section>
-        </Container>
-      </div>
-    </HomeLayout>
+                    {item?.score && (
+                      <div className="overview_box_fillbox">
+                        <span className="mt-3">
+                          <TradeIcon />
+                        </span>
+                        <h4 className="my-3">{item?.text}</h4>
+                        <figure>
+                          <img src="/images/tradereply-for-crypto-traders.png" alt="TradeReply visual analytics – Gain insights with interactive charts and trading metrics" />
+                        </figure>
+                      </div>
+                    )}
+                    {item?.evaluation && (
+                      <div className="overview_box_fillbox">
+                        <h4 className="mb-4">{item?.text}</h4>
+                        <figure>
+                          <img src="/images/tradereply-trade-metrics.png" alt="TradeReply trading tools – Analyze, track, and optimize your trades with real-time insights" />
+                        </figure>
+                      </div>
+                    )}
+                    {!item?.score && !item?.evaluation && (
+                      <button type="button" className="overview_box_icon">
+                        <PlusIcon />
+                      </button>
+                    )}
+                  </div>
+                </Col>
+              ))}
+            </Row>
+          </Container>
+        </div>
+      </DashboardLayout>
   );
 };
 
