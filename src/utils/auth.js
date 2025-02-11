@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';  
+import { useRouter } from "next/navigation";
 
 const apiUrl = 'http://127.0.0.1:8000/api/auth'; 
 const Url = 'http://127.0.0.1:8000'; 
@@ -56,11 +57,13 @@ export const login = async (credentials) => {
 };
 
 export const logout = () => {
-  Cookies.remove('auth_token');
-};
+  Cookies.remove("authToken"); 
+  const router = useRouter();
+  router.push("/login"); 
+}
 
 export const getUser = async () => {
-  const token = Cookies.get('auth_token');
+  const token = Cookies.get('authToken');
   if (!token) return null;
 
   try {
