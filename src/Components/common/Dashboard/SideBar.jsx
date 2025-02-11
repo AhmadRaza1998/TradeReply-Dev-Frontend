@@ -97,19 +97,19 @@ const Sidebar = () => {
             <>
               <div className="linkList">
                 <div className="linkList">
-                  <NavLink href="/dashboard/trade-manager">
+                  <NavLink href="/user/trade-manager">
                     <span className="linktext">TM</span>{" "}
                     <span className="fulltext">Trade Manager</span>
                   </NavLink>
                 </div>
 
-                <NavLink href="/dashboard/strategy-manager">
+                <NavLink href="/user/strategy-manager">
                   <span className="linktext">SM</span>{" "}
                   <span className="fulltext">Strategy Manager</span>
                 </NavLink>
               </div>
               <div className="linkList">
-                <NavLink href="/trading-calculator">
+                <NavLink href="/user/trading-calculator">
                   <span className="linktext">
                     <CalculatorIcon />
                   </span>{" "}
@@ -117,7 +117,7 @@ const Sidebar = () => {
                 </NavLink>
               </div>
               <div className="linkList">
-                <NavLink href="/dashboard">
+                <NavLink href="/user/dashboard">
                   <span className="linktext">1</span>{" "}
                   <span className="fulltext"> Dashboard1</span>
                 </NavLink>
