@@ -24,9 +24,7 @@ const initialValues = {
 export default function Register() {
   const handleSubmit = async (values, { setSubmitting, setErrors }) => {
     try {
-      const response = await register(values);
-      console.log("Create User",response);
-      
+      const response = await register(values);       
       setSubmitting(false);
       // handleError(response.errors);
       if(response?.errors){
@@ -35,7 +33,7 @@ export default function Register() {
 
       if(response?.status){
         toast.success(response?.message);
-        window.location.href = "/login";
+        window.location.href = "/user/dashboard";
       }
     } catch (error) {
       setSubmitting(false);
@@ -134,7 +132,7 @@ export default function Register() {
                       </div>
                       <div className="anAccount mt-3 text-center">
                         <h6>
-                          Already have an account?{" "}
+                          Already have an account?
                           <NavLink href="/login">Login</NavLink>
                         </h6>
                       </div>

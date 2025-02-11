@@ -8,6 +8,7 @@
       }
     }
   }
+
   &_accordion {
     margin-top: 60px;
 
@@ -96,6 +97,38 @@
           @media screen and (max-width: 767px) {
             font-size: 15px;
             line-height: 23px;
+          }
+
+          // FAQ List Styling
+          .faq_list {
+            list-style-type: disc; // Change to "circle" or "square" if needed
+            padding-left: 25px; // Indents the list properly
+            margin-top: 10px;
+
+            @media screen and (max-width: 767px) {
+              padding-left: 20px;
+            }
+
+            li {
+              color: var.$white;
+              font-size: 18px;
+              font-weight: 500;
+              margin-bottom: 8px; // Adds space between list items
+
+              @media screen and (max-width: 991px) {
+                font-size: 16px;
+              }
+
+              @media screen and (max-width: 767px) {
+                font-size: 14px;
+                margin-bottom: 5px;
+              }
+
+              strong {
+                font-weight: 600;
+                color: var.$white;
+              }
+            }
           }
         }
       }

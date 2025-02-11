@@ -45,7 +45,7 @@ export default function Login({ status }) {
   useEffect(() => {
     const tokenFromCookies = Cookies.get("authToken");
     if (tokenFromCookies) {
-      router.push("/");
+      router.push("/user/dashboard");
     } else {
       router.push("/login");
     }
