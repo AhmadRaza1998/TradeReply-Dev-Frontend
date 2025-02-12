@@ -16,7 +16,7 @@ import AlertMsg from "@/Components/UI/AlertMsg";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../../redux/authSlice";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 
 const initialValues = {
@@ -26,6 +26,7 @@ const initialValues = {
 
 export default function Login({ status }) {
   const dispatch = useDispatch();
+  const [loader , setLoader] = useState(false);
   const router = useRouter();
   const { token, loading } = useSelector((state) => state.auth);
 
@@ -128,7 +129,7 @@ export default function Login({ status }) {
                       <div className="w-100">
                         <CommonButton
                           type="submit"
-                          title="Log In"
+                          title={ isSubmitting ? 'Loading' : 'Log In'}
                           fluid
                           disabled={isSubmitting}
                         />
