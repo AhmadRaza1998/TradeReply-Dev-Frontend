@@ -78,7 +78,7 @@ const Header = () => {
     changeLanguage(lang);
   }
   return (
-    <header className={isActive ? "siteHeader openmenu" : "siteHeader"}>
+    <header className={isActive ? "siteHeader openmenu" : "siteHeader"}> 
       <Navbar expand="xl">
         <Container>
           <div className="d-flex align-items-center">
